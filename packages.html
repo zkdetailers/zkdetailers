@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZK Detailers | Mobile Auto Detailing – Big Island, Hawaiʻi</title>
+  <meta name="description" content="Professional mobile auto detailing services brought directly to you anywhere on the Big Island of Hawaiʻi.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#fff9e6',
+              100: '#fff0b3',
+              200: '#ffe680',
+              300: '#ffdb4d',
+              400: '#ffd11a',
+              500: '#D4AF37',
+              600: '#b8960e',
+              700: '#8b7000',
+              800: '#5e4b00',
+              900: '#312600'
+            },
+            pkgblue: {
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb'
+            },
+            pkgpurple: {
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed'
+            },
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            heading: ['"Oswald"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Neon Glow Utilities */
+    .glow-gold {
+      text-shadow: 0 0 10px rgba(212, 175, 55, .6), 0 0 30px rgba(212, 175, 55, .3), 0 0 60px rgba(212, 175, 55, .1);
+    }
+
+    .glow-blue {
+      text-shadow: 0 0 10px rgba(59, 130, 246, .6), 0 0 30px rgba(59, 130, 246, .3);
+    }
+
+    .glow-purple {
+      text-shadow: 0 0 10px rgba(139, 92, 246, .6), 0 0 30px rgba(139, 92, 246, .3);
+    }
+
+    .glow-gold-box {
+      box-shadow: 0 0 15px rgba(212, 175, 55, .4), 0 0 40px rgba(212, 175, 55, .15), inset 0 0 15px rgba(212, 175, 55, .05);
+    }
+
+    .glow-blue-box {
+      box-shadow: 0 0 15px rgba(59, 130, 246, .35), 0 0 40px rgba(59, 130, 246, .12), inset 0 0 15px rgba(59, 130, 246, .05);
+    }
+
+    .glow-purple-box {
+      box-shadow: 0 0 15px rgba(139, 92, 246, .35), 0 0 40px rgba(139, 92, 246, .12), inset 0 0 15px rgba(139, 92, 246, .05);
+    }
+
+    .border-glow-gold {
+      border: 1px solid rgba(212, 175, 55, .5);
+    }
+
+    .border-glow-blue {
+      border: 1px solid rgba(59, 130, 246, .4);
+    }
+
+    .border-glow-purple {
+      border: 1px solid rgba(139, 92, 246, .4);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #D4AF37, #ffd11a, #D4AF37);
+      color: #000;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: all .3s ease;
+      box-shadow: 0 0 15px rgba(212, 175, 55, .3), 0 4px 15px rgba(0, 0, 0, .4);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(212, 175, 55, .5), 0 8px 25px rgba(0, 0, 0, .5);
+    }
+
+    .btn-outline-gold {
+      border: 2px solid #D4AF37;
+      color: #D4AF37;
+      border-radius: 8px;
+      transition: all .3s ease;
+      background: transparent;
+    }
+
+    .btn-outline-gold:hover {
+      background: rgba(212, 175, 55, .1);
+      box-shadow: 0 0 15px rgba(212, 175, 55, .2);
+      transform: translateY(-2px);
+    }
+
+    .card-hover {
+      transition: all .4s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Animated gradient border for Grand Opening */
+    @keyframes borderGlow {
+
+      0%,
+      100% {
+        border-color: rgba(212, 175, 55, .6);
+        box-shadow: 0 0 20px rgba(212, 175, 55, .3), 0 0 60px rgba(212, 175, 55, .1);
+      }
+
+      50% {
+        border-color: rgba(255, 209, 26, .9);
+        box-shadow: 0 0 30px rgba(212, 175, 55, .5), 0 0 80px rgba(212, 175, 55, .2);
+      }
+    }
+
+    .animate-border-glow {
+      animation: borderGlow 2s ease-in-out infinite;
+    }
+
+    /* Hero particles */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: .3;
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: .6;
+      }
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: #D4AF37;
+      animation: float linear infinite;
+      pointer-events: none;
+    }
+
+    /* Fade in animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Before-After Slider */
+    .ba-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: col-resize;
+      user-select: none;
+    }
+
+    .ba-container img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .ba-after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .ba-after img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--full-width);
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ba-slider {
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: #D4AF37;
+      box-shadow: 0 0 10px rgba(212, 175, 55, .5);
+      z-index: 10;
+      cursor: col-resize;
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #D4AF37;
+      box-shadow: 0 0 15px rgba(212, 175, 55, .6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 11;
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 12px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 5;
+    }
+
+    .ba-label-before {
+      left: 12px;
+      background: rgba(220, 38, 38, .8);
+    }
+
+    .ba-label-after {
+      right: 12px;
+      background: rgba(34, 197, 94, .8);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 4px;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform .3s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Shimmer effect on headings */
+    @keyframes shimmer {
+      0% {
+        background-position: -200% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    .shimmer-gold {
+      background: linear-gradient(90deg, #D4AF37 0%, #ffd11a 25%, #fff9e6 50%, #ffd11a 75%, #D4AF37 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, .4), transparent);
+    }
+
+    /* Star rating */
+    .star {
+      color: #D4AF37;
+      filter: drop-shadow(0 0 3px rgba(212, 175, 55, .5));
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background:rgba(0,0,0,.85);backdrop-filter:blur(12px);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <a href="/#home" class="flex items-center gap-2 group">
+          <span class="text-2xl md:text-3xl font-display tracking-wider shimmer-gold">ZK DETAILERS</span>
+        </a>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/#home" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Home</a>
+          <a href="/packages.html" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Packages</a>
+          <a href="/#gallery" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Gallery</a>
+          <a href="/#reviews" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Reviews</a>
+          <a href="/#contact" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Contact</a>
+          <a href="/#booking" class="btn-gold px-6 py-2.5 text-sm tracking-wide uppercase">Book Now</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="<md:hidden text-gold-500 focus:outline-none" aria-label="Menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full z-50 flex flex-col p-8 gap-6" style="background:rgba(10,10,10,.97);backdrop-filter:blur(16px);">
+      <button id="closeMenu" class="self-end text-gold-500 mb-4" aria-label="Close Menu">
+        <i data-lucide="x" class="w-7 h-7"></i>
+      </button>
+      <a href="/#home" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Home</a>
+      <a href="/packages.html" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Packages</a>
+      <a href="/#gallery" class="mobile-link text-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Gallery</a>
+      <a href="/#reviews" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Reviews</a>
+      <a href="/#contact" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Contact</a>
+      <a href="/#booking" class="btn-gold px-6 py-3 text-center text-sm tracking-wide uppercase mt-4">Book Now</a>
+    </div>
+  </nav>
+  
+  
+  
+<section class="py-16 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto space-y-16">
+
+    <section class="py-16 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- PACKAGES TITLE -->
+    <div class="text-center mb-16">
+      <h1 class="font-display text-5xl md:text-7xl tracking-wider shimmer-gold mb-4">
+        OUR PACKAGES
+      </h1>
+
+      <p class="text-gray-400 text-sm md:text-base tracking-wide uppercase">
+        Professional Care. Showroom Results.
+          </div>
+                                       
+      </p>
+    </div>
+
+<!-- ==================== PACKAGES SECTION ==================== -->
+<section class="py-20 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto space-y-28">
+
+    <!-- BASIC PACKAGE -->
+    <div id="basic" class="grid md:grid-cols-[350px_1fr] gap-8 items-start scroll-mt-24">
+
+      <!-- BASIC IMAGES -->
+      <div class="grid gap-4">
+        <div class="h-48 rounded-xl overflow-hidden border border-blue-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/HTnjThJK"><img src="https://i.ibb.co/Jj59j3hc/IMG-3712.jpg" alt="IMG-3712" border="0"></a>
+        </div>
+
+        <div class="h-48 rounded-xl overflow-hidden border border-blue-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/n2Qqd0W"><img src="https://i.ibb.co/TXPDjTC/Chat-GPT-Image-Jun-3-2026-08-01-34-PM.png" alt="Chat-GPT-Image-Jun-3-2026-08-01-34-PM" border="0"></a>
+        </div>
+      </div>
+
+      <!-- BASIC BOX -->
+      <div class="rounded-2xl p-8 border-glow-blue glow-blue-box bg-gradient-to-b from-blue-950/30 to-black">
+        <h2 class="font-display text-5xl text-center glow-blue mb-2">BASIC</h2>
+
+        <p class="text-center text-pkgblue-400 mb-8 tracking-widest uppercase">
+          Quick Clean • Fresh Finish
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-heading text-xl mb-4 text-white">Interior</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>✓ Full Vacuuming</li>
+              <li>✓ Dust & Surface Wipe Down</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-heading text-xl mb-4 text-white">Exterior</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>✓ Pressure Wash</li>
+              <li>✓ Exterior Hand Clean</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-6 mt-8 space-y-2">
+          <div class="flex justify-between"><span>Small Car</span><span>$85</span></div>
+          <div class="flex justify-between"><span>Sedan</span><span>$95</span></div>
+          <div class="flex justify-between"><span>SUV / Truck</span><span>$110</span></div>
+          <div class="flex justify-between"><span>Van / Work Van</span><span>$130</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOLD PACKAGE -->
+    <div id="gold" class="grid md:grid-cols-[1fr_350px] gap-8 items-start scroll-mt-24">
+
+      <!-- GOLD BOX -->
+      <div class="mt-4 rounded-2xl p-8 border-glow-gold glow-gold-box bg-gradient-to-b from-yellow-950/20 to-black">
+        <h2 class="font-display text-5xl text-center glow-gold mb-2">GOLD</h2>
+
+        <p class="text-center text-gold-500 mb-8 tracking-widest uppercase">
+          Deep Clean • Detailed Finish
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-heading text-xl mb-4 text-white">Interior</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>✓ Everything in Basic</li>
+              <li>✓ Detailed Carpet Cleaning</li>
+              <li>✓ Seat Cleaning & Extraction</li>
+              <li>✓ Console & Dashboard Cleaning</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-heading text-xl mb-4 text-white">Exterior</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>✓ Everything in Basic</li>
+              <li>✓ Exterior Glass Cleaning</li>
+              <li>✓ Grill Cleaning</li>
+              <li>✓ Wheel & Wheel Well Cleaning</li>
+              <li>✓ Tire Deep Clean</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-6 mt-8 space-y-2">
+          <div class="flex justify-between"><span>Small Car</span><span>$160</span></div>
+          <div class="flex justify-between"><span>Sedan</span><span>$190</span></div>
+          <div class="flex justify-between"><span>SUV / Truck</span><span>$220</span></div>
+          <div class="flex justify-between"><span>Van / Work Van</span><span>$280</span></div>
+        </div>
+      </div>
+
+      <!-- GOLD IMAGES -->
+      <div class="grid gap-4">
+        <div class="h-48 rounded-xl overflow-hidden border border-yellow-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/gM3S7tfG"><img src="https://i.ibb.co/hRyBM24k/Chat-GPT-Image-Jun-3-2026-09-29-44-PM.png" alt="Chat-GPT-Image-Jun-3-2026-09-29-44-PM" border="0"></a>
+        </div>
+
+        <div class="h-48 rounded-xl overflow-hidden border border-yellow-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/RpN0YD4n"><img src="https://i.ibb.co/jvzMbrZK/Chat-GPT-Image-Jun-3-2026-09-12-55-PM.png" alt="Chat-GPT-Image-Jun-3-2026-09-12-55-PM" border="0"></a>
+        </div>
+
+        <div class="h-48 rounded-xl overflow-hidden border border-yellow-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/4RQMyfmp"><img src="https://i.ibb.co/s9BQSPmq/Chat-GPT-Image-Jun-3-2026-09-07-44-PM.png" alt="Chat-GPT-Image-Jun-3-2026-09-07-44-PM" border="0"></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREMIUM PACKAGE -->
+    <div id="premium" class="grid md:grid-cols-[350px_1fr] gap-8 items-start scroll-mt-24">
+
+      <!-- PREMIUM IMAGES -->
+      <div class="grid gap-4">
+        <div class="h-48 rounded-xl overflow-hidden border border-purple-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/zh2sX3LV"><img src="https://i.ibb.co/wNQySnbh/Chat-GPT-Image-Jun-3-2026-09-28-32-PM.png" alt="Chat-GPT-Image-Jun-3-2026-09-28-32-PM" border="0"></a>
+        </div>
+
+        <div class="h-48 rounded-xl overflow-hidden border border-purple-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/zhghq99G"><img src="https://i.ibb.co/8DwD1vv6/Chat-GPT-Image-Jun-3-2026-08-07-16-PM.png" alt="Chat-GPT-Image-Jun-3-2026-08-07-16-PM" border="0"></a>
+        </div>
+
+        <div class="h-48 rounded-xl overflow-hidden border border-purple-500/40 bg-black/50 flex items-center justify-center text-gray-500">
+          <a href="https://ibb.co/RpNXZfmm"><img src="https://i.ibb.co/gMd0HNpp/Chat-GPT-Image-Jun-3-2026-09-15-29-PM.png" alt="Chat-GPT-Image-Jun-3-2026-09-15-29-PM" border="0"></a>
+        </div>
+      </div>
+
+      <!-- PREMIUM BOX -->
+      <div class="mt-4 rounded-2xl p-8 border-glow-purple glow-purple-box bg-gradient-to-b from-purple-950/30 to-black">
+        <h2 class="font-display text-5xl text-center glow-purple mb-2">PREMIUM</h2>
+
+        <p class="text-center text-pkgpurple-400 mb-8 tracking-widest uppercase">
+          Showroom Shine • Ultimate Detail
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-heading text-xl mb-4 text-white">Interior</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>✓ Everything in Gold</li>
+              <li>✓ Full Interior Detailing</li>
+              <li>✓ Deep Stain Treatment</li>
+              <li>✓ Premium Finish Protection</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-heading text-xl mb-4 text-white">Exterior</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>✓ Everything in Gold</li>
+              <li>✓ Hydrophobic Ceramic Coating</li>
+              <li>✓ Tire Shine</li>
+              <li>✓ Premium Exterior Finish</li>
+              <li>✓ Full Detail Hand Touch-Up</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-6 mt-8 space-y-2">
+          <div class="flex justify-between"><span>Small Car</span><span>$220</span></div>
+          <div class="flex justify-between"><span>Sedan</span><span>$260</span></div>
+          <div class="flex justify-between"><span>SUV / Truck</span><span>$320</span></div>
+          <div class="flex justify-between"><span>Van / Work Van</span><span>$400</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ==================== ADD-ONS SECTION ==================== -->
+
+<section class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="text-center mb-12 fade-in visible">
+      <h1 class="font-display text-5xl md:text-7xl tracking-wider shimmer-gold mb-4">
+        ADD-ONS
+      </h1>
+
+      <p class="text-gray-400 text-sm tracking-wide">
+        Enhance your detail with these premium upgrades
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+
+      <div class="fade-in visible card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-2">Exterior Ceramic Wax</h4>
+        <p class="text-white text-lg font-semibold">$35</p>
+      </div>
+
+      <div class="fade-in visible card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-2">Clay Bar Restoration</h4>
+        <p class="text-white text-lg font-semibold">$50</p>
+      </div>
+
+      <div class="fade-in visible card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-2">Pet Hair Removal</h4>
+        <p class="text-white text-lg font-semibold">Starting at $35</p>
+      </div>
+
+      <div class="fade-in visible card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-2">Excess Trash Removal</h4>
+        <p class="text-white text-lg font-semibold">Starting at $40</p>
+      </div>
+
+      <div class="fade-in visible card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-2">Odor Removal</h4>
+        <p class="text-white text-lg font-semibold">Starting at $60</p>
+      </div>
+
+      <div class="fade-in visible card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-2">Headlight Restoration</h4>
+        <p class="text-white text-lg font-semibold">$60</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ==================== CALCULATOR ==================== --> 
+<section id="quote" class="quote-section">
+  <style>
+    .quote-section{position:relative;padding:96px 16px;background:#000;color:#fff;overflow:hidden;font-family:Inter,Arial,sans-serif}
+    .quote-bg{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(212,175,55,.18),transparent 55%)}
+    .quote-wrapper{position:relative;max-width:768px;margin:0 auto}
+    .quote-header{text-align:center;margin-bottom:40px}
+    .quote-header span{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#D4AF37;font-weight:500}
+    .quote-header h2{font-size:40px;margin-top:12px;font-weight:800}
+    .quote-card{border-radius:24px;padding:32px;border:1px solid rgba(212,175,55,.4);background:linear-gradient(to bottom,rgba(24,24,27,.9),#000);box-shadow:0 0 30px rgba(212,175,55,.18)}
+    .quote-card label{display:block;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(212,175,55,.8);font-weight:600;margin-bottom:8px}
+    .button-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .quote-option{padding:10px 16px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.4);color:rgba(255,255,255,.55);cursor:pointer;transition:all .25s ease}
+    .quote-option:hover{color:white;border-color:rgba(212,175,55,.5)}
+    .quote-option.active{background:#D4AF37;color:#000;border-color:#D4AF37;box-shadow:0 0 15px rgba(212,175,55,.45)}
+    .quote-option.addon-active{background:#fff;color:#000;border-color:#fff;box-shadow:0 0 15px rgba(255,255,255,.25)}
+    .divider{height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.5),transparent);margin-bottom:24px}
+    .quote-total{display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .quote-total p{color:rgba(255,255,255,.4);font-size:14px}
+    .quote-total h3{font-size:52px;font-weight:900;margin:0;background:linear-gradient(to right,#D4AF37,#FFD700,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .quote-actions{display:flex;flex-direction:column;gap:8px}
+    .book-btn,.text-btn{padding:13px 24px;border-radius:999px;font-size:14px;font-weight:700;text-align:center;text-decoration:none;transition:all .25s ease}
+    .book-btn{background:linear-gradient(to right,#D4AF37,#FFD700,#D4AF37);color:#000;box-shadow:0 0 18px rgba(212,175,55,.35)}
+    .text-btn{background:rgba(0,0,0,.4);border:1px solid rgba(212,175,55,.4);color:rgba(255,255,255,.7)}
+    .book-btn:hover,.text-btn:hover{transform:scale(1.05)}
+    .text-btn:hover{color:#D4AF37;border-color:#D4AF37}
+    .disclaimer{font-size:12px;color:rgba(255,255,255,.35);margin-top:24px;line-height:1.6}
+    @media(max-width:640px){.quote-total{flex-direction:column;align-items:flex-start}.quote-actions{width:100%}.quote-header h2{font-size:32px}}
+  </style>
+
+  <div class="quote-bg"></div>
+
+  <div class="quote-wrapper">
+    <div class="quote-header">
+      <span>Instant Estimate</span>
+      <h2>⚙ Quote Calculator</h2>
+    </div>
+
+    <div class="quote-card">
+      <label>Vehicle Type</label>
+      <div class="button-group" id="vehicleButtons"></div>
+
+      <label>Package</label>
+      <div class="button-group" id="packageButtons"></div>
+
+      <label>Add-Ons</label>
+      <div class="button-group" id="addOnButtons"></div>
+
+      <div class="divider"></div>
+
+      <div class="quote-total">
+        <div>
+          <p>Estimated Total</p>
+          <h3 id="totalPrice">$160</h3>
+        </div>
+
+        <div class="quote-actions">
+         <a href="/#booking" class="book-btn">Book Now</a>
+          <a href="sms:8084303893?body=Hi, I'd like a quote for detailing." class="text-btn">💬 Text for Quote</a>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        Estimates may vary depending on vehicle condition, excessive dirt, sand, staining, pet hair, or oversized vehicles.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const vehicleTypes = ['Small Car', 'Sedan', 'SUV / Truck', 'Van / Work Van'];
+    const packageNames = ['Basic', 'Gold', 'Premium'];
+
+    const pricing = {
+      Basic: [85, 95, 110, 130],
+      Gold: [160, 190, 220, 280],
+      Premium: [220, 260, 320, 400]
+    };
+
+    const addOns = [
+      { name: 'Exterior Ceramic Wax', price: 35 },
+      { name: 'Clay Bar Restoration', price: 50 },
+      { name: 'Pet Hair Removal', price: 35 },
+      { name: 'Excess Trash Removal', price: 40 },
+      { name: 'Odor Removal', price: 60 },
+      { name: 'Headlight Restoration', price: 60 }
+    ];
+
+    let selectedVehicle = 0;
+    let selectedPackage = 'Gold';
+    let selectedAddOns = [];
+
+    const vehicleButtons = document.getElementById('vehicleButtons');
+    const packageButtons = document.getElementById('packageButtons');
+    const addOnButtons = document.getElementById('addOnButtons');
+    const totalPrice = document.getElementById('totalPrice');
+
+    function renderButtons() {
+      vehicleButtons.innerHTML = '';
+      packageButtons.innerHTML = '';
+      addOnButtons.innerHTML = '';
+
+      vehicleTypes.forEach((type, index) => {
+        const button = document.createElement('button');
+        button.textContent = type;
+        button.className = `quote-option ${selectedVehicle === index ? 'active' : ''}`;
+        button.onclick = () => {
+          selectedVehicle = index;
+          renderButtons();
+          updateTotal();
+        };
+        vehicleButtons.appendChild(button);
+      });
+
+      packageNames.forEach(name => {
+        const button = document.createElement('button');
+        button.textContent = name;
+        button.className = `quote-option ${selectedPackage === name ? 'active' : ''}`;
+        button.onclick = () => {
+          selectedPackage = name;
+          renderButtons();
+          updateTotal();
+        };
+        packageButtons.appendChild(button);
+      });
+
+      addOns.forEach(addOn => {
+        const button = document.createElement('button');
+        button.textContent = `${addOn.name} (+$${addOn.price})`;
+        button.className = `quote-option ${selectedAddOns.includes(addOn.name) ? 'addon-active' : ''}`;
+        button.onclick = () => {
+          if (selectedAddOns.includes(addOn.name)) {
+            selectedAddOns = selectedAddOns.filter(item => item !== addOn.name);
+          } else {
+            selectedAddOns.push(addOn.name);
+          }
+
+          renderButtons();
+          updateTotal();
+        };
+
+        addOnButtons.appendChild(button);
+      });
+    }
+
+    function updateTotal() {
+      const basePrice = pricing[selectedPackage][selectedVehicle];
+
+      const addOnTotal = addOns
+        .filter(addOn => selectedAddOns.includes(addOn.name))
+        .reduce((sum, addOn) => sum + addOn.price, 0);
+
+      totalPrice.textContent = `$${basePrice + addOnTotal}`;
+    }
+
+    renderButtons();
+    updateTotal();
+  </script>
+</section>
+<!-- ==================== CONTACT SECTION ==================== -->
+<section id="contact" class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12 fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-3">CONTACT US</h2>
+      <p class="text-gray-400 text-sm tracking-wide">Get in touch to schedule your detail</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+      <!-- Phone -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="phone" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-1">Phone</h4>
+        <a href="tel:8084303893" class="font-heading text-lg shimmer-gold">808-430-3893</a>
+      </div>
+      <!-- Instagram -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="instagram" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-1">Instagram</h4>
+        <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="font-heading text-lg shimmer-gold">@zk_detailers</a>
+      </div>
+      <!-- Email -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="mail" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-1">Email</h4>
+        <a href="mailto:zkdetailers@gmail.com" class="font-heading text-sm break-all shimmer-gold">zkdetailers@gmail.com</a>
+      </div>
+    </div>
+
+<!-- ==================== FOOTER ==================== -->
+        <footer class="border-t border-gray-800/50 py-10 md:py-14 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="font-display text-3xl tracking-wider shimmer-gold mb-2">ZK DETAILERS</h3>
+    <p class="text-gray-500 text-sm tracking-wide mb-1">Mobile Auto Detailing Services</p>
+    <p class="text-xs tracking-[.2em] text-gold-500/60 uppercase mb-6">Professional Service • Quality Results • Convenience Delivered</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-gray-500 mb-6">
+      <a href="tel:8084303893" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="phone" class="w-3.5 h-3.5"></i> 808-430-3893
+      </a>
+      <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @zkdetailers
+      </a>
+      <a href="mailto:zkdetailers@gmail.com" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="mail" class="w-3.5 h-3.5"></i> zkdetailers@gmail.com
+      </a>
+    </div>
+    <div class="section-divider mb-6"></div>
+    <p class="text-xs text-gray-600">&copy; 2025 ZK Detailers. All rights reserved. Big Island, Hawaiʻi</p>
+  </div>
+</footer>
+    
+
+<!-- ==================== SCRIPTS ==================== -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // ===== MOBILE MENU =====
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenuBtn = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 80) {
+      navbar.style.background = 'rgba(0,0,0,.95)';
+      navbar.style.boxShadow = '0 2px 20px rgba(212,175,55,.1)';
+    } else {
+      navbar.style.background = 'rgba(0,0,0,.85)';
+      navbar.style.boxShadow = 'none';
+    }
+    lastScroll = currentScroll;
+  });
+
+  // ===== FADE IN ON SCROLL =====
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  fadeEls.forEach(el => fadeObserver.observe(el));
+
+  // ===== HERO PARTICLES =====
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%; top:${Math.random()*100}%;
+      animation-duration:${Math.random()*4+3}s;
+      animation-delay:${Math.random()*3}s;
+      opacity:${Math.random()*.3+.1};
+    `;
+    particlesContainer.appendChild(p);
+  }
+
+  // ===== BEFORE-AFTER SLIDERS =====
+  document.querySelectorAll('[data-ba]').forEach(container => {
+    const afterDiv = container.querySelector('.ba-after');
+    const slider = container.querySelector('.ba-slider');
+    const afterImg = afterDiv.querySelector('img');
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = container.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0.05, Math.min(0.95, pos));
+      const pct = pos * 100;
+      afterDiv.style.width = pct + '%';
+      slider.style.left = pct + '%';
+      afterImg.style.width = (1 / pos * 100) + '%';
+    }
+
+    // Set initial state
+    afterImg.style.width = '200%';
+
+    container.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    container.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+    
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+    
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('touchend', () => isDragging = false);
+  });
+
+});
+</script>
+
+<script src="
+</body>
+             

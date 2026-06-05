@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZK Detailers | Mobile Auto Detailing – Big Island, Hawaiʻi</title>
+  <meta name="description" content="Professional mobile auto detailing services brought directly to you anywhere on the Big Island of Hawaiʻi.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 50:'#fff9e6', 100:'#fff0b3', 200:'#ffe680', 300:'#ffdb4d', 400:'#ffd11a', 500:'#D4AF37', 600:'#b8960e', 700:'#8b7000', 800:'#5e4b00', 900:'#312600' },
+            pkgblue: { 400:'#60a5fa', 500:'#3b82f6', 600:'#2563eb' },
+            pkgpurple: { 400:'#a78bfa', 500:'#8b5cf6', 600:'#7c3aed' },
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            heading: ['"Oswald"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:#000; color:#fff; overflow-x:hidden; }
+
+    /* Neon Glow Utilities */
+    .glow-gold { text-shadow:0 0 10px rgba(212,175,55,.6), 0 0 30px rgba(212,175,55,.3), 0 0 60px rgba(212,175,55,.1); }
+    .glow-blue { text-shadow:0 0 10px rgba(59,130,246,.6), 0 0 30px rgba(59,130,246,.3); }
+    .glow-purple { text-shadow:0 0 10px rgba(139,92,246,.6), 0 0 30px rgba(139,92,246,.3); }
+    .glow-gold-box { box-shadow:0 0 15px rgba(212,175,55,.4), 0 0 40px rgba(212,175,55,.15), inset 0 0 15px rgba(212,175,55,.05); }
+    .glow-blue-box { box-shadow:0 0 15px rgba(59,130,246,.35), 0 0 40px rgba(59,130,246,.12), inset 0 0 15px rgba(59,130,246,.05); }
+    .glow-purple-box { box-shadow:0 0 15px rgba(139,92,246,.35), 0 0 40px rgba(139,92,246,.12), inset 0 0 15px rgba(139,92,246,.05); }
+
+    .border-glow-gold { border:1px solid rgba(212,175,55,.5); }
+    .border-glow-blue { border:1px solid rgba(59,130,246,.4); }
+    .border-glow-purple { border:1px solid rgba(139,92,246,.4); }
+
+    .btn-gold {
+      background:linear-gradient(135deg,#D4AF37,#ffd11a,#D4AF37);
+      color:#000; font-weight:700; border-radius:8px; transition:all .3s ease;
+      box-shadow:0 0 15px rgba(212,175,55,.3), 0 4px 15px rgba(0,0,0,.4);
+    }
+    .btn-gold:hover { transform:translateY(-2px); box-shadow:0 0 25px rgba(212,175,55,.5), 0 8px 25px rgba(0,0,0,.5); }
+
+    .btn-outline-gold {
+      border:2px solid #D4AF37; color:#D4AF37; border-radius:8px; transition:all .3s ease;
+      background:transparent;
+    }
+    .btn-outline-gold:hover { background:rgba(212,175,55,.1); box-shadow:0 0 15px rgba(212,175,55,.2); transform:translateY(-2px); }
+
+    .card-hover { transition:all .4s ease; }
+    .card-hover:hover { transform:translateY(-6px); }
+
+    /* Animated gradient border for Grand Opening */
+    @keyframes borderGlow {
+      0%,100% { border-color:rgba(212,175,55,.6); box-shadow:0 0 20px rgba(212,175,55,.3), 0 0 60px rgba(212,175,55,.1); }
+      50% { border-color:rgba(255,209,26,.9); box-shadow:0 0 30px rgba(212,175,55,.5), 0 0 80px rgba(212,175,55,.2); }
+    }
+    .animate-border-glow { animation:borderGlow 2s ease-in-out infinite; }
+
+    /* Hero particles */
+    @keyframes float { 0%,100%{transform:translateY(0) scale(1); opacity:.3;} 50%{transform:translateY(-20px) scale(1.2); opacity:.6;} }
+    .particle { position:absolute; border-radius:50%; background:#D4AF37; animation:float linear infinite; pointer-events:none; }
+
+    /* Fade in animation */
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+    .fade-in { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* Before-After Slider */
+    .ba-container { position:relative; overflow:hidden; border-radius:12px; cursor:col-resize; user-select:none; }
+    .ba-container img { display:block; width:100%; height:100%; object-fit:cover; pointer-events:none; }
+    .ba-after { position:absolute; top:0; left:0; width:50%; height:100%; overflow:hidden; }
+    .ba-after img { position:absolute; top:0; left:0; width:var(--full-width); height:100%; object-fit:cover; }
+    .ba-slider { position:absolute; top:0; width:4px; height:100%; background:#D4AF37; box-shadow:0 0 10px rgba(212,175,55,.5); z-index:10; cursor:col-resize; }
+    .ba-handle { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:40px; height:40px; border-radius:50%; background:#D4AF37; box-shadow:0 0 15px rgba(212,175,55,.6); display:flex; align-items:center; justify-content:center; z-index:11; }
+    .ba-label { position:absolute; top:12px; padding:4px 12px; border-radius:4px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; z-index:5; }
+    .ba-label-before { left:12px; background:rgba(220,38,38,.8); }
+    .ba-label-after { right:12px; background:rgba(34,197,94,.8); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width:8px; }
+    ::-webkit-scrollbar-track { background:#111; }
+    ::-webkit-scrollbar-thumb { background:#D4AF37; border-radius:4px; }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform:translateX(100%);
+      transition:transform .3s ease;
+      background:linear-gradient(180deg,rgba(0,0,0,.99),rgba(12,12,12,.99)) !important;
+      backdrop-filter:blur(18px);
+      border-left:1px solid rgba(212,175,55,.35);
+      box-shadow:-18px 0 45px rgba(0,0,0,.85), 0 0 30px rgba(212,175,55,.12);
+    }
+    .mobile-menu.open { transform:translateX(0); }
+    .mobile-menu .mobile-link {
+      display:block;
+      width:100%;
+      padding:14px 16px;
+      border-radius:12px;
+      background:rgba(0,0,0,.72);
+      border:1px solid rgba(212,175,55,.28);
+      color:#f5f5f5 !important;
+      text-shadow:0 0 8px rgba(0,0,0,.9);
+      box-shadow:0 0 16px rgba(0,0,0,.35);
+    }
+    .mobile-menu .mobile-link:hover {
+      background:rgba(212,175,55,.12);
+      color:#D4AF37 !important;
+      border-color:rgba(212,175,55,.6);
+    }
+
+    /* Shimmer effect on headings */
+    @keyframes shimmer { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
+    .shimmer-gold {
+      background:linear-gradient(90deg,#D4AF37 0%,#ffd11a 25%,#fff9e6 50%,#ffd11a 75%,#D4AF37 100%);
+      background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; animation:shimmer 4s linear infinite;
+    }
+
+    .section-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.4),transparent); }
+
+    /* Star rating */
+    .star { color:#D4AF37; filter:drop-shadow(0 0 3px rgba(212,175,55,.5)); }
+  </style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background:rgba(0,0,0,.85);backdrop-filter:blur(12px);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2 group">
+        <span class="text-2xl md:text-3xl font-display tracking-wider shimmer-gold">ZK DETAILERS</span>
+      </a>
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Home</a>
+        <a href="/packages.html" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Packages</a>
+        <a href="#gallery" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Gallery</a>
+        <a href="#reviews" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Reviews</a>
+        <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors tracking-wide uppercase">Contact</a>
+        <a href="#booking" class="btn-gold px-6 py-2.5 text-sm tracking-wide uppercase">Book Now</a>
+      </div>
+      <!-- Mobile Menu Button -->
+      <button id="menuBtn" class="md:hidden text-gold-500 focus:outline-none" aria-label="Menu">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full z-50 flex flex-col p-8 gap-6" style="background:rgba(10,10,10,.97);backdrop-filter:blur(16px);">
+    <button id="closeMenu" class="self-end text-gold-500 mb-4" aria-label="Close Menu">
+      <i data-lucide="x" class="w-7 h-7"></i>
+    </button>
+    <a href="#home" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Home</a>
+    <a href="/packages.html" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Packages</a>
+    <a href="#gallery" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Gallery</a>
+    <a href="#reviews" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Reviews</a>
+    <a href="#contact" class="mobile-link text-lg font-heading tracking-wide text-gray-200 hover:text-gold-500 transition-colors">Contact</a>
+    <a href="#booking" class="btn-gold px-6 py-3 text-center text-sm tracking-wide uppercase mt-4">Book Now</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+  <!-- Background Image Overlay -->
+  <div class="absolute inset-0">
+    <img src="http://static.photos/automotive/1200x630/7" alt="" class="w-full h-full object-cover opacity-20">
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+  </div>
+  <!-- Particles -->
+  <div id="particles" class="absolute inset-0 pointer-events-none"></div>
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+    <div class="fade-in">
+      <h1 class="font-display text-6xl sm:text-7xl md:text-9xl tracking-widest shimmer-gold leading-none mb-4">ZK DETAILERS</h1>
+      <p class="font-heading text-xl sm:text-2xl md:text-3xl tracking-wider text-gray-300 mb-2">Mobile Auto Detailing Services</p>
+      <div class="w-24 h-0.5 bg-gold-500 mx-auto my-6" style="box-shadow:0 0 10px rgba(212,175,55,.5);"></div>
+      <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Professional interior and exterior detailing brought directly to you anywhere on the Big Island
+      </p>
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+        <a href="#booking" class="btn-gold px-8 py-3.5 text-base tracking-wide uppercase w-full sm:w-auto">Book Now</a>
+        <a href="tel:8084303893" class="btn-outline-gold px-8 py-3.5 text-base tracking-wide uppercase w-full sm:w-auto flex items-center justify-center gap-2">
+          <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+        </a>
+        <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="btn-outline-gold px-8 py-3.5 text-base tracking-wide uppercase w-full sm:w-auto flex items-center justify-center gap-2">
+          <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+        </a>
+      </div>
+      <!-- Checkmarks -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm text-gray-400 mb-6">
+        <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-gold-500"></i> Easy Online Booking</span>
+        <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-gold-500"></i> Fully Mobile Service</span>
+        <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-gold-500"></i> Response Within 24 Hours</span>
+      </div>
+      <!-- Tagline -->
+      <p class="text-xs sm:text-sm tracking-[.25em] text-gold-500/70 uppercase">Professional Service • Quality Results • Convenience Delivered</p>
+    </div>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevron-down" class="w-6 h-6 text-gold-500/50"></i>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ==================== PACKAGES SECTION ==================== -->
+<section id="packages" class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-12 md:mb-16 fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-3">
+        OUR PACKAGES
+      </h2>
+      <p class="text-gray-400 text-sm sm:text-base tracking-wide">
+        Choose the perfect detail for your vehicle
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+
+      <!-- BASIC PACKAGE -->
+      <div class="fade-in card-hover rounded-2xl p-6 md:p-8 border-glow-blue glow-blue-box bg-gradient-to-b from-blue-950/30 to-black relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-pkgblue-500 to-transparent"></div>
+
+        <div class="text-center mb-6">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
+                style="background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.3);">
+            Basic
+          </span>
+
+          <h3 class="font-heading text-2xl md:text-3xl tracking-wide text-white mb-1 glow-blue">
+            Quick Clean
+          </h3>
+
+          <p class="text-pkgblue-400 text-sm tracking-wide">
+            Fresh Finish
+          </p>
+        </div>
+
+        <div class="space-y-3 mb-8">
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">Small Car</span>
+            <span class="font-heading text-lg text-white">$85</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">Sedan</span>
+            <span class="font-heading text-lg text-white">$95</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">SUV / Truck</span>
+            <span class="font-heading text-lg text-white">$110</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5">
+            <span class="text-gray-400 text-sm">Van / Work Van</span>
+            <span class="font-heading text-lg text-white">$130</span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <a href="/packages.html#basic"
+             class="block w-full py-3 rounded-lg text-center font-bold tracking-wide uppercase text-sm transition-all duration-300 hover:scale-[1.02]"
+             style="background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;box-shadow:0 0 15px rgba(59,130,246,.3);">
+            Learn More
+          </a>
+
+          <a href="#booking"
+             class="block w-full py-2 rounded-lg text-center font-bold tracking-wide uppercase text-xs border border-blue-500 text-blue-300 hover:bg-blue-500/10 transition-all">
+            Book Basic
+          </a>
+        </div>
+      </div>
+
+      <!-- GOLD PACKAGE -->
+<div id="gold-details" class="rounded-2xl p-8 border-glow-gold glow-gold-box bg-gradient-to-b from-yellow-950/20 to-black">
+
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
+
+        <div class="absolute top-4 right-4">
+          <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold tracking-widest uppercase"
+                style="background:linear-gradient(135deg,#D4AF37,#ffd11a);color:#000;">
+            Popular
+          </span>
+        </div>
+
+        <div class="text-center mb-6">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
+                style="background:rgba(212,175,55,.15);color:#D4AF37;border:1px solid rgba(212,175,55,.3);">
+            Gold
+          </span>
+
+          <h3 class="font-heading text-2xl md:text-3xl tracking-wide text-white mb-1 glow-gold">
+            Deep Clean
+          </h3>
+
+          <p class="text-gold-500 text-sm tracking-wide">
+            Detailed Finish
+          </p>
+        </div>
+
+        <div class="space-y-3 mb-8">
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">Small Car</span>
+            <span class="font-heading text-lg text-white">$160</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">Sedan</span>
+            <span class="font-heading text-lg text-white">$190</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">SUV / Truck</span>
+            <span class="font-heading text-lg text-white">$220</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5">
+            <span class="text-gray-400 text-sm">Van / Work Van</span>
+            <span class="font-heading text-lg text-white">$280</span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <a href="/packages.html#gold"
+             class="btn-gold block w-full py-3 text-center tracking-wide uppercase text-sm hover:scale-[1.02] transition-transform">
+            Learn More
+          </a>
+
+          <a href="#booking"
+             class="block w-full py-2 rounded-lg text-center font-bold tracking-wide uppercase text-xs border border-gold-500 text-gold-500 hover:bg-gold-500/10 transition-all">
+            Book Gold
+          </a>
+        </div>
+      </div>
+
+      <!-- PREMIUM PACKAGE -->
+      <div class="fade-in card-hover rounded-2xl p-6 md:p-8 border-glow-purple glow-purple-box bg-gradient-to-b from-purple-950/30 to-black relative overflow-hidden">
+
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-pkgpurple-500 to-transparent"></div>
+
+        <div class="text-center mb-6">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4"
+                style="background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3);">
+            Premium
+          </span>
+
+          <h3 class="font-heading text-2xl md:text-3xl tracking-wide text-white mb-1 glow-purple">
+          Ultra clean 
+          </h3>
+
+          <p class="text-pkgpurple-400 text-sm tracking-wide">
+            Ultimate Detail
+          </p>
+        </div>
+
+        <div class="space-y-3 mb-8">
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">Small Car</span>
+            <span class="font-heading text-lg text-white">$220</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">Sedan</span>
+            <span class="font-heading text-lg text-white">$260</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5 border-b border-gray-800/60">
+            <span class="text-gray-400 text-sm">SUV / Truck</span>
+            <span class="font-heading text-lg text-white">$320</span>
+          </div>
+
+          <div class="flex justify-between items-center py-2.5">
+            <span class="text-gray-400 text-sm">Van / Work Van</span>
+            <span class="font-heading text-lg text-white">$400</span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <a href="/packages.html#premium"
+             class="block w-full py-3 rounded-lg text-center font-bold tracking-wide uppercase text-sm transition-all duration-300 hover:scale-[1.02]"
+             style="background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff;box-shadow:0 0 15px rgba(139,92,246,.3);">
+            Learn More
+          </a>
+
+          <a href="#booking"
+             class="block w-full py-2 rounded-lg text-center font-bold tracking-wide uppercase text-xs border border-purple-500 text-purple-300 hover:bg-purple-500/10 transition-all">
+            Book Premium
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!----========================== ADD ON SECTION ===============================----->
+<section class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- TITLE -->
+    <div class="text-center mb-12">
+      <h1 class="font-display text-5xl md:text-7xl tracking-wider shimmer-gold mb-4">
+        ADD-ONS
+      </h1>
+
+      <p class="text-gray-400 text-sm tracking-wide">
+        Enhance your detail with these premium upgrades
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mx-auto">
+
+      <!-- Pet Hair -->
+      <div class="fade-in card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.08);">
+          <i data-lucide="paw-print" class="w-6 h-6 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-sm tracking-wide text-white mb-1">Pet Hair Removal</h4>
+        <p class="font-heading text-xl text-gold-500">Starting at $35</p>
+      </div>
+
+      <!-- Excess Trash -->
+      <div class="fade-in card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.08);">
+          <i data-lucide="trash-2" class="w-6 h-6 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-sm tracking-wide text-white mb-1">Excess Trash Removal</h4>
+        <p class="font-heading text-xl text-gold-500">Starting at $40</p>
+      </div>
+
+      <!-- Odor -->
+      <div class="fade-in card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.08);">
+          <i data-lucide="wind" class="w-6 h-6 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-sm tracking-wide text-white mb-1">Odor Removal</h4>
+        <p class="font-heading text-xl text-gold-500">Starting at $60</p>
+      </div>
+
+      <!-- Headlights -->
+      <div class="fade-in card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.08);">
+          <i data-lucide="sun" class="w-6 h-6 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-sm tracking-wide text-white mb-1">Headlight Restoration</h4>
+        <p class="font-heading text-xl text-gold-500">$60</p>
+      </div>
+
+      <!-- Ceramic Wax -->
+      <div class="fade-in card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.08);">
+          <i data-lucide="shield" class="w-6 h-6 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-sm tracking-wide text-white mb-1">Exterior Ceramic Wax</h4>
+        <p class="font-heading text-xl text-gold-500">$35</p>
+      </div>
+
+      <!-- Clay Bar -->
+      <div class="fade-in card-hover rounded-xl p-5 text-center border border-gray-800 bg-gradient-to-b from-gray-900/50 to-black hover:border-gold-500/30 transition-all">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.08);">
+          <i data-lucide="circle-dot" class="w-6 h-6 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-sm tracking-wide text-white mb-1">Clay Bar Restoration</h4>
+        <p class="font-heading text-xl text-gold-500">$50</p>
+      </div>
+
+    </div>
+
+<!-- ==================== CACULATOR SECTION ==================== -->
+  <section id="quote" class="quote-section">
+  <style>
+    .quote-section{position:relative;padding:96px 16px;background:#000;color:#fff;overflow:hidden;font-family:Inter,Arial,sans-serif}
+    .quote-bg{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(212,175,55,.18),transparent 55%)}
+    .quote-wrapper{position:relative;max-width:768px;margin:0 auto}
+    .quote-header{text-align:center;margin-bottom:40px}
+    .quote-header span{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#D4AF37;font-weight:500}
+    .quote-header h2{font-size:40px;margin-top:12px;font-weight:800}
+    .quote-card{border-radius:24px;padding:32px;border:1px solid rgba(212,175,55,.4);background:linear-gradient(to bottom,rgba(24,24,27,.9),#000);box-shadow:0 0 30px rgba(212,175,55,.18)}
+    .quote-card label{display:block;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(212,175,55,.8);font-weight:600;margin-bottom:8px}
+    .button-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .quote-option{padding:10px 16px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.4);color:rgba(255,255,255,.55);cursor:pointer;transition:all .25s ease}
+    .quote-option:hover{color:white;border-color:rgba(212,175,55,.5)}
+    .quote-option.active{background:#D4AF37;color:#000;border-color:#D4AF37;box-shadow:0 0 15px rgba(212,175,55,.45)}
+    .quote-option.addon-active{background:#fff;color:#000;border-color:#fff;box-shadow:0 0 15px rgba(255,255,255,.25)}
+    .divider{height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.5),transparent);margin-bottom:24px}
+    .quote-total{display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .quote-total p{color:rgba(255,255,255,.4);font-size:14px}
+    .quote-total h3{font-size:52px;font-weight:900;margin:0;background:linear-gradient(to right,#D4AF37,#FFD700,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .quote-actions{display:flex;flex-direction:column;gap:8px}
+    .book-btn,.text-btn{padding:13px 24px;border-radius:999px;font-size:14px;font-weight:700;text-align:center;text-decoration:none;transition:all .25s ease}
+    .book-btn{background:linear-gradient(to right,#D4AF37,#FFD700,#D4AF37);color:#000;box-shadow:0 0 18px rgba(212,175,55,.35)}
+    .text-btn{background:rgba(0,0,0,.4);border:1px solid rgba(212,175,55,.4);color:rgba(255,255,255,.7)}
+    .book-btn:hover,.text-btn:hover{transform:scale(1.05)}
+    .text-btn:hover{color:#D4AF37;border-color:#D4AF37}
+    .disclaimer{font-size:12px;color:rgba(255,255,255,.35);margin-top:24px;line-height:1.6}
+    @media(max-width:640px){.quote-total{flex-direction:column;align-items:flex-start}.quote-actions{width:100%}.quote-header h2{font-size:32px}}
+  </style>
+
+  <div class="quote-bg"></div>
+
+  <div class="quote-wrapper">
+    <div class="quote-header">
+      <span>Instant Estimate</span>
+      <h2>⚙ Quote Calculator</h2>
+    </div>
+
+    <div class="quote-card">
+      <label>Vehicle Type</label>
+      <div class="button-group" id="vehicleButtons"></div>
+
+      <label>Package</label>
+      <div class="button-group" id="packageButtons"></div>
+
+      <label>Add-Ons</label>
+      <div class="button-group" id="addOnButtons"></div>
+
+      <div class="divider"></div>
+
+      <div class="quote-total">
+        <div>
+          <p>Estimated Total</p>
+          <h3 id="totalPrice">$190</h3>
+        </div>
+
+        <div class="quote-actions">
+          <a href="#booking" class="book-btn">Book Now</a>
+          <a href="sms:8084303893?body=Hi, I'd like a quote for detailing." class="text-btn">💬 Text for Quote</a>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        Estimates may vary depending on vehicle condition, excessive dirt, sand, staining, pet hair, or oversized vehicles.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const vehicleTypes=['Small Car','Sedan','SUV / Truck','Van / Work Van'];
+    const packageNames=['Basic','Gold','Premium'];
+    const pricing={Basic:[85,95,110,130],Gold:[160,190,220,280],Premium:[220,260,320,400]};
+    const addOns=[
+      {name:'Pet Hair Removal',price:35},
+      {name:'Excess Trash Removal',price:40},
+      {name:'Odor Removal',price:60},
+      {name:'Headlight Restoration',price:60},
+      {name:'Exterior Ceramic Wax',price:35},
+      {name:'Clay Bar Restoration',price:50}
+    ];
+
+    let selectedVehicle=0;
+    let selectedPackage='Gold';
+    let selectedAddOns=[];
+
+    const vehicleButtons=document.getElementById('vehicleButtons');
+    const packageButtons=document.getElementById('packageButtons');
+    const addOnButtons=document.getElementById('addOnButtons');
+    const totalPrice=document.getElementById('totalPrice');
+
+    function renderButtons(){
+      vehicleButtons.innerHTML='';
+      packageButtons.innerHTML='';
+      addOnButtons.innerHTML='';
+
+      vehicleTypes.forEach((type,index)=>{
+        const button=document.createElement('button');
+        button.textContent=type;
+        button.className=`quote-option ${selectedVehicle===index?'active':''}`;
+        button.onclick=()=>{selectedVehicle=index;renderButtons();updateTotal();};
+        vehicleButtons.appendChild(button);
+      });
+
+      packageNames.forEach(name=>{
+        const button=document.createElement('button');
+        button.textContent=name;
+        button.className=`quote-option ${selectedPackage===name?'active':''}`;
+        button.onclick=()=>{selectedPackage=name;renderButtons();updateTotal();};
+        packageButtons.appendChild(button);
+      });
+
+      addOns.forEach(addOn=>{
+        const button=document.createElement('button');
+        button.textContent=`${addOn.name} (+$${addOn.price})`;
+        button.className=`quote-option ${selectedAddOns.includes(addOn.name)?'addon-active':''}`;
+        button.onclick=()=>{
+          if(selectedAddOns.includes(addOn.name)){
+            selectedAddOns=selectedAddOns.filter(item=>item!==addOn.name);
+          }else{
+            selectedAddOns.push(addOn.name);
+          }
+          renderButtons();
+          updateTotal();
+        };
+        addOnButtons.appendChild(button);
+      });
+    }
+
+    function updateTotal(){
+      const basePrice=pricing[selectedPackage][selectedVehicle];
+      const addOnTotal=addOns
+        .filter(addOn=>selectedAddOns.includes(addOn.name))
+        .reduce((sum,addOn)=>sum+addOn.price,0);
+
+      totalPrice.textContent=`$${basePrice+addOnTotal}`;
+    }
+
+    renderButtons();
+    updateTotal();
+  </script>
+</section>
+<!-- ==================== WHY CHOOSE ZK ==================== -->
+<section class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 md:mb-16 fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-3">WHY CHOOSE ZK DETAILERS?</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+      <div class="fade-in card-hover rounded-xl p-6 text-center border border-gray-800/50 bg-gradient-to-b from-gray-900/40 to-black hover:border-gold-500/30 transition-all">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold-500"></i>
+          <h4 class="font-heading text-base tracking-wide text-white">Mobile Service</h4>
+        </div>
+        <p class="text-xs text-gray-500">We come directly to your location</p>
+      </div>
+      <div class="fade-in card-hover rounded-xl p-6 text-center border border-gray-800/50 bg-gradient-to-b from-gray-900/40 to-black hover:border-gold-500/30 transition-all">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold-500"></i>
+          <h4 class="font-heading text-base tracking-wide text-white">Quality Results</h4>
+        </div>
+        <p class="text-xs text-gray-500">Attention to every detail</p>
+      </div>
+      <div class="fade-in card-hover rounded-xl p-6 text-center border border-gray-800/50 bg-gradient-to-b from-gray-900/40 to-black hover:border-gold-500/30 transition-all">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold-500"></i>
+          <h4 class="font-heading text-base tracking-wide text-white">Flexible Scheduling</h4>
+        </div>
+        <p class="text-xs text-gray-500">Book at your convenience</p>
+      </div>
+      <div class="fade-in card-hover rounded-xl p-6 text-center border border-gray-800/50 bg-gradient-to-b from-gray-900/40 to-black hover:border-gold-500/30 transition-all">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold-500"></i>
+          <h4 class="font-heading text-base tracking-wide text-white">Affordable Pricing</h4>
+        </div>
+        <p class="text-xs text-gray-500">Premium quality, fair prices</p>
+      </div>
+      <div class="fade-in card-hover rounded-xl p-6 text-center border border-gray-800/50 bg-gradient-to-b from-gray-900/40 to-black hover:border-gold-500/30 transition-all">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold-500"></i>
+          <h4 class="font-heading text-base tracking-wide text-white">Local Business</h4>
+        </div>
+        <p class="text-xs text-gray-500">Proudly serving Big Island</p>
+      </div>
+      <div class="fade-in card-hover rounded-xl p-6 text-center border border-gray-800/50 bg-gradient-to-b from-gray-900/40 to-black hover:border-gold-500/30 transition-all">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold-500"></i>
+          <h4 class="font-heading text-base tracking-wide text-white">Satisfaction Focused</h4>
+        </div>
+        <p class="text-xs text-gray-500">Your satisfaction is our priority</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+<!-- ==================== BOOKING SECTION ==================== -->
+<section id="booking" class="py-16 md:py-24 px-4 sm:px-6 bg-black text-white font-body">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-12 md:mb-16 fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-3">
+        BOOK YOUR DETAIL
+      </h2>
+      <p class="text-gray-400 text-base font-body">
+        Fill out the form below and we’ll contact you within 24 hours
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+
+      <!-- FORM -->
+      <div class="lg:col-span-2 rounded-2xl p-6 md:p-8 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/70 to-black">
+
+        <form action="https://formsubmit.co/zkdetailers@gmail.com" method="POST" class="space-y-4">
+
+          <!-- FormSubmit Settings -->
+          <input type="hidden" name="_subject" value="New ZK Detailers Booking Request">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input name="Full Name" required placeholder="Full Name"
+              class="w-full px-4 py-3 rounded-lg bg-black border border-gray-700 text-white placeholder:text-gray-500 font-body focus:outline-none focus:border-gold-500 transition-all">
+
+            <input name="Phone Number" required placeholder="Phone Number"
+              class="w-full px-4 py-3 rounded-lg bg-black border border-gray-700 text-white placeholder:text-gray-500 font-body focus:outline-none focus:border-gold-500 transition-all">
+          </div>
+
+          <input name="Email" type="email" placeholder="Email Optional"
+            class="w-full px-4 py-3 rounded-lg bg-black border border-gray-700 text-white placeholder:text-gray-500 font-body focus:outline-none focus:border-gold-500 transition-all">
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <select name="Vehicle Type" required
+              class="w-full px-4 py-3 rounded-lg bg-black border border-gray-700 text-white font-body focus:outline-none focus:border-gold-500 transition-all">
+              <option value="">Vehicle Type</option>
+              <option>Small Car</option>
+              <option>Sedan</option>
+              <option>SUV / Truck</option>
+              <option>Van / Work Van</option>
+            </select>
+
+            <select name="Package" required
+              class="w-full px-4 py-3 rounded-lg bg-black border border-gray-700 text-white font-body focus:outline-none focus:border-gold-500 transition-all">
+              <option value="">Package</option>
+              <option>Basic</option>
+              <option>Gold</option>
+              <option>Premium</option>
+            </select>
+          </div>
+
+          <input name="Service Location / City" required placeholder="Service Location / City"
+            class="w-full px-4 py-3 rounded-lg bg-black border border-gray-700 text-white placeholder:text-gray-500 font-body focus:outline-none focus:border-gold-500 transition-all">
+
+          <textarea name="Additional Notes" placeholder="Additional notes, vehicle condition, special requests..."
+            class="w-full min-h-[120px] px-4 py-3 rounded-lg bg-black border border-gray-700 text-white placeholder:text-gray-500 font-body focus:outline-none focus:border-gold-500 resize-none transition-all"></textarea>
+
+          <button type="submit" class="btn-gold w-full py-3.5 font-body font-semibold text-sm uppercase flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            Submit Booking Request
+          </button>
+
+        </form>
+      </div>
+
+      <!-- CONTACT SIDEBAR -->
+      <div class="space-y-4">
+
+        <a href="tel:8084303893" class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="phone" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Call Now</p>
+            <p class="text-gray-500 text-xs font-body">(808) 430-3893</p>
+          </div>
+        </a>
+
+        <a href="sms:8084303893?body=Hi, I'd like to schedule a detail." class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="message-circle" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Text Us</p>
+            <p class="text-gray-500 text-xs font-body">Quick response</p>
+          </div>
+        </a>
+
+        <a href="mailto:zkdetailers@gmail.com" class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="mail" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Email</p>
+            <p class="text-gray-500 text-xs font-body break-all">zkdetailers@gmail.com</p>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="instagram" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Instagram</p>
+            <p class="text-gray-500 text-xs font-body">@zk_detailers</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+      <!-- CONTACT SIDEBAR -->
+      <div class="space-y-4">
+
+        <a href="tel:8084303893" class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="phone" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Call Now</p>
+            <p class="text-gray-500 text-xs font-body">(808) 430-3893</p>
+          </div>
+        </a>
+
+        <a href="sms:8084303893?body=Hi, I'd like to schedule a detail." class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="message-circle" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Text Us</p>
+            <p class="text-gray-500 text-xs font-body">Quick response</p>
+          </div>
+        </a>
+
+        <a href="mailto:zkdetailers@gmail.com" class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="mail" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Email</p>
+            <p class="text-gray-500 text-xs font-body break-all">zkdetailers@gmail.com</p>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="flex items-center gap-4 rounded-xl p-5 border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/60 to-black hover:scale-[1.02] transition-all">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+            <i data-lucide="instagram" class="w-5 h-5 text-gold-500"></i>
+          </div>
+          <div>
+            <p class="font-body text-white font-semibold text-base">Instagram</p>
+            <p class="text-gray-500 text-xs font-body">@zk_detailers</p>
+          </div>
+        </a>
+
+        <div class="rounded-xl p-5 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-yellow-950/20 to-black">
+          <p class="font-body text-gold-500 font-semibold text-base mb-1">
+            Text Photos For A Quote
+          </p>
+          <p class="text-gray-500 text-xs font-body mb-4 leading-relaxed">
+            Send vehicle photos and we’ll recommend the best package.
+          </p>
+          <a href="sms:8084303893?body=Hi, I'd like a quote. Here are photos of my vehicle:" class="btn-gold block py-2.5 font-body font-semibold text-xs uppercase">
+            Text Photos
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const bookingForm = document.getElementById("bookingForm");
+  if (bookingForm) {
+  bookingForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const vehicle = document.getElementById("vehicle").value;
+    const pkg = document.getElementById("package").value;
+    const location = document.getElementById("location").value;
+    const notes = document.getElementById("notes").value;
+
+    const message =
+      `New Booking Request:\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      `Email: ${email}\n` +
+      `Vehicle: ${vehicle}\n` +
+      `Package: ${pkg}\n` +
+      `Location: ${location}\n` +
+      `Notes: ${notes}`;
+
+    window.open(`sms:8084303893?body=${encodeURIComponent(message)}`, "_blank");
+  });
+  }
+
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+</script>
+
+
+<!-- ==================== FEATURE HIGHLIGHTS ==================== -->
+<section class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <!-- Card 1 -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/80 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="car" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h3 class="font-heading text-lg tracking-wide text-white mb-1">Fully Mobile</h3>
+        <p class="text-xs text-gray-500">We Come To You</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/80 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="star" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h3 class="font-heading text-lg tracking-wide text-white mb-1">Quality Results</h3>
+        <p class="text-xs text-gray-500">Premium Finish</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/80 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="calendar-check" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h3 class="font-heading text-lg tracking-wide text-white mb-1">Flexible Scheduling</h3>
+        <p class="text-xs text-gray-500">Book Anytime</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/80 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="palmtree" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h3 class="font-heading text-lg tracking-wide text-white mb-1">Local Business</h3>
+        <p class="text-xs text-gray-500">Big Island, Hawaiʻi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+<!-- ==================== CUSTOMER REVIEWS ==================== -->
+<section id="reviews" class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-6">CUSTOMER REVIEWS</h2>
+      <!-- 5 Stars -->
+      <div class="flex items-center justify-center gap-2 mb-8">
+        <i data-lucide="star" class="w-8 h-8 star"></i>
+        <i data-lucide="star" class="w-8 h-8 star"></i>
+        <i data-lucide="star" class="w-8 h-8 star"></i>
+        <i data-lucide="star" class="w-8 h-8 star"></i>
+        <i data-lucide="star" class="w-8 h-8 star"></i>
+      </div>
+      <h3 class="font-heading text-xl md:text-2xl tracking-wide text-white mb-4">Be One Of Our First Customers</h3>
+      <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto">
+        We are currently building our reputation and portfolio. Book today and help us become one of the Big Island's trusted detailing services.
+      </p>
+      <a href="#booking" class="btn-gold inline-block px-10 py-3.5 text-base tracking-wide uppercase">Book Now</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+
+<!-- ==================== IMPORTANT INFORMATION ==================== -->
+<section class="py-12 md:py-16 px-4 sm:px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="fade-in rounded-xl p-6 md:p-8 border border-gray-800 bg-gradient-to-b from-gray-900/30 to-black">
+      <h3 class="font-heading text-lg tracking-wide text-gold-500 mb-4 flex items-center gap-2">
+        <i data-lucide="info" class="w-5 h-5"></i> Important Information
+      </h3>
+      <ul class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <li class="flex items-start gap-2">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>
+          <span>Final pricing may vary depending on vehicle condition, excessive dirt, staining, sand, pet hair, or oversized vehicles.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <i data-lucide="calendar" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>
+          <span>Mobile detailing services available by appointment.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <i data-lucide="droplets" class="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0"></i>
+          <span>Water and power access may be required depending on location.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ==================== CONTACT SECTION ==================== -->
+<section id="contact" class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12 fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-3">CONTACT US</h2>
+      <p class="text-gray-400 text-sm tracking-wide">Get in touch to schedule your detail</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+      <!-- Phone -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="phone" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide text-white mb-1">Phone</h4>
+        <a href="tel:8084303893" class="text-gold-500 hover:text-gold-400 transition-colors text-lg font-heading">808-430-3893</a>
+      </div>
+      <!-- Instagram -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="instagram" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide text-white mb-1">Instagram</h4>
+        <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="text-gold-500 hover:text-gold-400 transition-colors text-lg font-heading">@zk_detailers</a>
+      </div>
+      <!-- Email -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="mail" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide text-white mb-1">Email</h4>
+        <a href="mailto:zkdetailers@gmail.com" class="text-gold-500 hover:text-gold-400 transition-colors text-sm font-heading break-all">zkdetailers@gmail.com</a>
+      </div>
+    </div>
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
+      <a href="tel:8084303893" class="btn-outline-gold px-8 py-3.5 text-sm tracking-wide uppercase w-full sm:w-auto flex items-center justify-center gap-2">
+        <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+      </a>
+      <a href="#booking" class="btn-gold px-8 py-3.5 text-sm tracking-wide uppercase w-full sm:w-auto">Book Now</a>
+      <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="btn-outline-gold px-8 py-3.5 text-sm tracking-wide uppercase w-full sm:w-auto flex items-center justify-center gap-2">
+        <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="border-t border-gray-800/50 py-10 md:py-14 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="font-display text-3xl tracking-wider shimmer-gold mb-2">ZK DETAILERS</h3>
+    <p class="text-gray-500 text-sm tracking-wide mb-1">Mobile Auto Detailing Services</p>
+    <p class="text-xs tracking-[.2em] text-gold-500/60 uppercase mb-6">Professional Service • Quality Results • Convenience Delivered</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-gray-500 mb-6">
+      <a href="tel:8084303893" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="phone" class="w-3.5 h-3.5"></i> 808-430-3893
+      </a>
+      <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @zk_detailers
+      </a>
+      <a href="mailto:zkdetailers@gmail.com" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="mail" class="w-3.5 h-3.5"></i> zkdetailers@gmail.com
+      </a>
+    </div>
+    <div class="section-divider mb-6"></div>
+    <p class="text-xs text-gray-600">&copy; 2026 ZK Detailers. All rights reserved. Big Island, Hawaiʻi</p>
+  </div>
+</footer>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // ===== MOBILE MENU =====
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenuBtn = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 80) {
+      navbar.style.background = 'rgba(0,0,0,.95)';
+      navbar.style.boxShadow = '0 2px 20px rgba(212,175,55,.1)';
+    } else {
+      navbar.style.background = 'rgba(0,0,0,.85)';
+      navbar.style.boxShadow = 'none';
+    }
+    lastScroll = currentScroll;
+  });
+
+  // ===== FADE IN ON SCROLL =====
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  fadeEls.forEach(el => fadeObserver.observe(el));
+
+  // ===== HERO PARTICLES =====
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%; top:${Math.random()*100}%;
+      animation-duration:${Math.random()*4+3}s;
+      animation-delay:${Math.random()*3}s;
+      opacity:${Math.random()*.3+.1};
+    `;
+    particlesContainer.appendChild(p);
+  }
+
+  // ===== BEFORE-AFTER SLIDERS =====
+  document.querySelectorAll('[data-ba]').forEach(container => {
+    const afterDiv = container.querySelector('.ba-after');
+    const slider = container.querySelector('.ba-slider');
+    const afterImg = afterDiv.querySelector('img');
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = container.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0.05, Math.min(0.95, pos));
+      const pct = pos * 100;
+      afterDiv.style.width = pct + '%';
+      slider.style.left = pct + '%';
+      afterImg.style.width = (1 / pos * 100) + '%';
+    }
+
+    // Set initial state
+    afterImg.style.width = '200%';
+
+    container.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    container.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+    
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+    
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('touchend', () => isDragging = false);
+  });
+
+});
+</script>
+
+</body>
+</html>
