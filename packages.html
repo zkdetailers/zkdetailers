@@ -891,7 +891,7 @@
         </div>
 
         <div class="quote-actions">
-          <a href="#booking" class="book-btn">Book Now</a>
+          <a href="/#booking" class="btn-gold px-6 py-3 text-center text-sm tracking-wide uppercase mt-4">Book Now</a>
           <a href="sms:8084303893?body=Hi, I'd like a quote for detailing." class="text-btn">💬 Text for Quote</a>
         </div>
       </div>
@@ -917,7 +917,12 @@
       { name: 'Pet Hair Removal', price: 35 },
       { name: 'Odor Removal', price: 60 },
       { name: 'Headlight Restoration', price: 60 },
-      { name: 'Excess Trash Removal', price: 40 }
+      { name: 'Excess Trash Removal', price: 35 },
+      { name: 'Exterior Ceramic Wax', price: 20 },
+      { name: 'Exterior Ceramic Wax + Wash', price: 30 },
+      { name: 'Ceramic Rub Wax', price: 25 },
+      { name: 'Clay Bar Restoration', price: 25 },
+      { name: 'Clay Bar + Exterior Rub Wax', price: 35 }
     ];
 
     let selectedVehicle = 0;
@@ -979,6 +984,172 @@
     function updateTotal() {
       const basePrice = pricing[selectedPackage][selectedVehicle];
 
+      const addOnTotal = addOns
+        .filter(addOn => selectedAddOns.includes(addOn.name))
+        .reduce((sum, addOn) => sum + addOn.price, 0);
+
+      totalPrice.textContent = `$${basePrice + addOnTotal}`;
+    }
+
+    renderButtons();
+    updateTotal();
+  </script>
+</section>
+<!-- ==================== CONTACT SECTION ==================== -->
+<section id="contact" class="py-16 md:py-24 px-4 sm:px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12 fade-in">
+      <h2 class="font-display text-4xl sm:text-5xl md:text-6xl tracking-wider shimmer-gold mb-3">CONTACT US</h2>
+      <p class="text-gray-400 text-sm tracking-wide">Get in touch to schedule your detail</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+      <!-- Phone -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="phone" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-1">Phone</h4>
+        <a href="tel:8084303893" class="font-heading text-lg shimmer-gold">808-430-3893</a>
+      </div>
+      <!-- Instagram -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="instagram" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-1">Instagram</h4>
+        <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="font-heading text-lg shimmer-gold">@zk_detailers</a>
+      </div>
+      <!-- Email -->
+      <div class="fade-in card-hover rounded-xl p-6 text-center border-glow-gold glow-gold-box bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center" style="background:rgba(212,175,55,.1);">
+          <i data-lucide="mail" class="w-7 h-7 text-gold-500"></i>
+        </div>
+        <h4 class="font-heading text-base tracking-wide shimmer-gold mb-1">Email</h4>
+        <a href="mailto:zkdetailers@gmail.com" class="font-heading text-sm break-all shimmer-gold">zkdetailers@gmail.com</a>
+      </div>
+    </div>
+
+<!-- ==================== FOOTER ==================== -->
+        <footer class="border-t border-gray-800/50 py-10 md:py-14 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="font-display text-3xl tracking-wider shimmer-gold mb-2">ZK DETAILERS</h3>
+    <p class="text-gray-500 text-sm tracking-wide mb-1">Mobile Auto Detailing Services</p>
+    <p class="text-xs tracking-[.2em] text-gold-500/60 uppercase mb-6">Professional Service • Quality Results • Convenience Delivered</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-gray-500 mb-6">
+      <a href="tel:8084303893" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="phone" class="w-3.5 h-3.5"></i> 808-430-3893
+      </a>
+      <a href="https://instagram.com/zk_detailers" target="_blank" rel="noopener" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="instagram" class="w-3.5 h-3.5"></i> @zkdetailers
+      </a>
+      <a href="mailto:zkdetailers@gmail.com" class="hover:text-gold-500 transition-colors flex items-center gap-1.5">
+        <i data-lucide="mail" class="w-3.5 h-3.5"></i> zkdetailers@gmail.com
+      </a>
+    </div>
+    <div class="section-divider mb-6"></div>
+    <p class="text-xs text-gray-600">&copy; 2025 ZK Detailers. All rights reserved. Big Island, Hawaiʻi</p>
+  </div>
+</footer>
+    
+
+<!-- ==================== SCRIPTS ==================== -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // ===== MOBILE MENU =====
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenuBtn = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 80) {
+      navbar.style.background = 'rgba(0,0,0,.95)';
+      navbar.style.boxShadow = '0 2px 20px rgba(212,175,55,.1)';
+    } else {
+      navbar.style.background = 'rgba(0,0,0,.85)';
+      navbar.style.boxShadow = 'none';
+    }
+    lastScroll = currentScroll;
+  });
+
+  // ===== FADE IN ON SCROLL =====
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  fadeEls.forEach(el => fadeObserver.observe(el));
+
+  // ===== HERO PARTICLES =====
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%; top:${Math.random()*100}%;
+      animation-duration:${Math.random()*4+3}s;
+      animation-delay:${Math.random()*3}s;
+      opacity:${Math.random()*.3+.1};
+    `;
+    particlesContainer.appendChild(p);
+  }
+
+  // ===== BEFORE-AFTER SLIDERS =====
+  document.querySelectorAll('[data-ba]').forEach(container => {
+    const afterDiv = container.querySelector('.ba-after');
+    const slider = container.querySelector('.ba-slider');
+    const afterImg = afterDiv.querySelector('img');
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = container.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0.05, Math.min(0.95, pos));
+      const pct = pos * 100;
+      afterDiv.style.width = pct + '%';
+      slider.style.left = pct + '%';
+      afterImg.style.width = (1 / pos * 100) + '%';
+    }
+
+    // Set initial state
+    afterImg.style.width = '200%';
+
+    container.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    container.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+    
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+    
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('touchend', () => isDragging = false);
+  });
+
+});
+</script>
+
+<script src="
+</body>
       const addOnTotal = addOns
         .filter(addOn => selectedAddOns.includes(addOn.name))
         .reduce((sum, addOn) => sum + addOn.price, 0);
