@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | ZK Detailers</title>
+  <meta name="description" content="See interior and exterior results from ZK Detailers, serving the Big Island of Hawaiʻi.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { gold: { 400:'#ffd11a', 500:'#D4AF37', 600:'#b8960e' } },
+        fontFamily: { display:['"Bebas Neue"','sans-serif'], heading:['"Oswald"','sans-serif'], body:['"Inter"','sans-serif'] }
+      }}
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}
+    .shimmer-gold{background:linear-gradient(90deg,#D4AF37,#ffd11a,#fff9e6,#ffd11a,#D4AF37);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+    @keyframes shimmer{to{background-position:200% center}}
+    .btn-gold{background:linear-gradient(135deg,#D4AF37,#ffd11a,#D4AF37);color:#000;font-weight:700;border-radius:8px;box-shadow:0 0 18px rgba(212,175,55,.3);transition:.3s}
+    .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(212,175,55,.5)}
+    .mobile-menu{transform:translateX(100%);transition:transform .3s ease;background:rgba(8,8,8,.98);border-left:1px solid rgba(212,175,55,.35)}
+    .mobile-menu.open{transform:translateX(0)}
+    .mobile-link{display:block;width:100%;padding:14px 16px;border-radius:12px;background:rgba(0,0,0,.72);border:1px solid rgba(212,175,55,.28)}
+    .gallery-card{position:relative;overflow:hidden;border-radius:16px;border:1px solid rgba(212,175,55,.24);background:#0b0b0b;box-shadow:0 16px 40px rgba(0,0,0,.42);cursor:pointer}
+    .gallery-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease,filter .55s ease}
+    .gallery-card:hover img{transform:scale(1.045);filter:brightness(1.08)}
+    .gallery-card .caption{position:absolute;inset:auto 0 0;padding:46px 18px 18px;background:linear-gradient(transparent,rgba(0,0,0,.9));transform:translateY(6px);transition:.3s}
+    .gallery-card:hover .caption{transform:translateY(0)}
+    .gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55),transparent)}
+    .lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.94);backdrop-filter:blur(10px)}
+    .lightbox.open{display:flex}.lightbox img{max-width:min(1100px,94vw);max-height:88vh;border-radius:14px;border:1px solid rgba(212,175,55,.55);box-shadow:0 0 50px rgba(212,175,55,.18)}
+    .lightbox button{position:absolute;top:24px;right:28px;color:#D4AF37;font-size:38px;line-height:1}
+  </style>
+</head>
+<body>
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="background:rgba(0,0,0,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,175,55,.12)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="index.html#home"><span class="text-2xl md:text-3xl font-display tracking-wider shimmer-gold">ZK DETAILERS</span></a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html#home" class="text-sm font-medium text-gray-300 hover:text-gold-500 tracking-wide uppercase">Home</a>
+          <a href="packages.html" class="text-sm font-medium text-gray-300 hover:text-gold-500 tracking-wide uppercase">Packages</a>
+          <a href="gallery.html" class="text-sm font-medium text-gold-500 tracking-wide uppercase">Gallery</a>
+          <a href="index.html#reviews" class="text-sm font-medium text-gray-300 hover:text-gold-500 tracking-wide uppercase">Reviews</a>
+          <a href="index.html#contact" class="text-sm font-medium text-gray-300 hover:text-gold-500 tracking-wide uppercase">Contact</a>
+          <a href="index.html#booking" class="btn-gold px-6 py-2.5 text-sm tracking-wide uppercase">Book Now</a>
+        </div>
+        <button id="menuBtn" class="md:hidden text-gold-500" aria-label="Open menu"><i data-lucide="menu" class="w-7 h-7"></i></button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-72 h-full z-50 flex flex-col p-8 gap-5">
+      <button id="closeMenu" class="self-end text-gold-500 mb-4" aria-label="Close menu"><i data-lucide="x" class="w-7 h-7"></i></button>
+      <a href="index.html#home" class="mobile-link text-lg font-heading">Home</a>
+      <a href="packages.html" class="mobile-link text-lg font-heading">Packages</a>
+      <a href="gallery.html" class="mobile-link text-lg font-heading text-gold-500">Gallery</a>
+      <a href="index.html#reviews" class="mobile-link text-lg font-heading">Reviews</a>
+      <a href="index.html#contact" class="mobile-link text-lg font-heading">Contact</a>
+      <a href="index.html#booking" class="btn-gold px-6 py-3 text-center text-sm uppercase mt-3">Book Now</a>
+    </div>
+  </nav>
+
+  <header class="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 overflow-hidden">
+    <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 50% 10%,rgba(212,175,55,.35),transparent 45%)"></div>
+    <div class="relative max-w-4xl mx-auto text-center">
+      <p class="font-heading uppercase tracking-[.32em] text-gold-500 text-sm mb-4">Craftsmanship in Every Detail</p>
+      <h1 class="font-display text-6xl sm:text-7xl md:text-8xl tracking-wider shimmer-gold leading-none">OUR GALLERY</h1>
+      <div class="w-24 h-0.5 bg-gold-500 mx-auto my-7"></div>
+      <p class="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">Clean lines. Restored shine. Interiors that feel fresh again. See the care ZK Detailers brings to every vehicle across the Big Island.</p>
+    </div>
+  </header>
+
+  <main class="px-4 sm:px-6 pb-24">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
+      <figure class="gallery-card sm:row-span-2 min-h-[520px]" data-full="assets/gallery/suv-front.webp" tabindex="0"><img src="assets/gallery/suv-front.webp" alt="Detailed silver SUV front exterior" loading="eager"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">SUV Exterior Finish</h2><p class="text-sm text-gray-400">A crisp, polished finish from every angle.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[280px]" data-full="assets/gallery/suv-interior.webp" tabindex="0"><img src="assets/gallery/suv-interior.webp" alt="Clean SUV front interior" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Interior Refresh</h2><p class="text-sm text-gray-400">Clean surfaces and a fresh cabin feel.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[280px]" data-full="assets/gallery/mini-cooper-front.webp" tabindex="0"><img src="assets/gallery/mini-cooper-front.webp" alt="Polished Mini Cooper headlight and hood" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Gloss & Clarity</h2><p class="text-sm text-gray-400">Finishing touches that make paint pop.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[330px]" data-full="assets/gallery/bmw-front.webp" tabindex="0"><img src="assets/gallery/bmw-front.webp" alt="Detailed white BMW front exterior" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Premium Exterior Detail</h2><p class="text-sm text-gray-400">A showroom-ready front finish.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[330px]" data-full="assets/gallery/bmw-interior.webp" tabindex="0"><img src="assets/gallery/bmw-interior.webp" alt="Clean BMW passenger interior" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Cabin Care</h2><p class="text-sm text-gray-400">Detailed from the dash to the floor.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[360px]" data-full="assets/gallery/nissan-front.jpg" tabindex="0"><img src="assets/gallery/nissan-front.jpg" alt="Detailed white Nissan front and headlight" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Headlight & Paint Detail</h2><p class="text-sm text-gray-400">Sharp reflections and a clean finish.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[360px]" data-full="assets/gallery/nissan-back-seat.jpg" tabindex="0"><img src="assets/gallery/nissan-back-seat.jpg" alt="Clean Nissan rear seat interior" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Rear Seat Refresh</h2><p class="text-sm text-gray-400">Comfortably clean, front to back.</p></figcaption></figure>
+      <figure class="gallery-card min-h-[360px]" data-full="assets/gallery/nissan-rear.jpg" tabindex="0"><img src="assets/gallery/nissan-rear.jpg" alt="Detailed white Nissan rear exterior" loading="lazy"><figcaption class="caption"><h2 class="font-heading text-xl tracking-wide">Complete Exterior Shine</h2><p class="text-sm text-gray-400">The kind of clean you notice immediately.</p></figcaption></figure>
+    </div>
+
+    <section class="max-w-4xl mx-auto mt-20 text-center rounded-2xl px-6 py-12 md:py-14" style="border:1px solid rgba(212,175,55,.4);background:linear-gradient(180deg,rgba(212,175,55,.08),rgba(0,0,0,.2));box-shadow:0 0 35px rgba(212,175,55,.1)">
+      <p class="text-gold-500 uppercase tracking-[.25em] text-xs font-bold mb-3">Your Vehicle Could Be Next</p>
+      <h2 class="font-display text-4xl md:text-6xl tracking-wider shimmer-gold mb-4">READY FOR THAT FRESH-FINISH FEEL?</h2>
+      <p class="text-gray-400 mb-8">Professional mobile detailing brought directly to you anywhere on the Big Island.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4"><a href="index.html#booking" class="btn-gold px-8 py-3.5 uppercase tracking-wide text-sm">Book Your Detail</a><a href="packages.html" class="px-8 py-3.5 rounded-lg border border-gold-500 text-gold-500 font-bold uppercase tracking-wide text-sm hover:bg-gold-500/10">View Packages</a></div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-800/60 py-12 px-4 text-center"><h3 class="font-display text-3xl tracking-wider shimmer-gold mb-2">ZK DETAILERS</h3><p class="text-gray-500 text-sm">Mobile Auto Detailing Services • Big Island, Hawaiʻi</p><div class="gold-line max-w-xl mx-auto my-6"></div><p class="text-xs text-gray-600">&copy; 2026 ZK Detailers. All rights reserved.</p></footer>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Expanded gallery image"><button id="closeLightbox" aria-label="Close image">&times;</button><img id="lightboxImage" src="" alt=""></div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+    const menu=document.getElementById('mobileMenu');
+    document.getElementById('menuBtn').addEventListener('click',()=>menu.classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click',()=>menu.classList.remove('open'));
+    const lightbox=document.getElementById('lightbox'), lightboxImage=document.getElementById('lightboxImage');
+    function openImage(card){const img=card.querySelector('img');lightboxImage.src=card.dataset.full;lightboxImage.alt=img.alt;lightbox.classList.add('open');document.body.style.overflow='hidden'}
+    function closeImage(){lightbox.classList.remove('open');lightboxImage.src='';document.body.style.overflow=''}
+    document.querySelectorAll('.gallery-card').forEach(card=>{card.addEventListener('click',()=>openImage(card));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openImage(card)}})});
+    document.getElementById('closeLightbox').addEventListener('click',closeImage);
+    lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeImage()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeImage()});
+  </script>
+</body>
+</html>
