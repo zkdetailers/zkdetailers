@@ -946,6 +946,15 @@
           <textarea name="Additional Notes" placeholder="Additional notes, vehicle condition, special requests..."
             class="w-full min-h-[120px] px-4 py-3 rounded-lg bg-black border border-gray-700 text-white placeholder:text-gray-500 font-body focus:outline-none focus:border-gold-500 resize-none transition-all"></textarea>
 
+          <label class="flex items-start gap-3 rounded-lg border border-gray-800 bg-black/70 px-4 py-4 text-sm text-gray-300 cursor-pointer hover:border-gold-500/50 transition-colors">
+            <input type="checkbox" name="Terms Accepted" value="Yes" required
+              class="mt-0.5 h-5 w-5 flex-shrink-0 accent-[#D4AF37] cursor-pointer">
+            <span>
+              I have read and agree to the
+              <a href="terms.html" target="_blank" rel="noopener" class="text-gold-500 underline underline-offset-2 hover:text-gold-400">ZK Detailers Terms of Service</a>.
+            </span>
+          </label>
+
           <button type="submit" class="btn-gold w-full py-3.5 font-body font-semibold text-sm uppercase flex items-center justify-center gap-2">
             <i data-lucide="send" class="w-4 h-4"></i>
             Submit Booking Request
@@ -1254,6 +1263,7 @@
       </a>
     </div>
     <div class="section-divider mb-6"></div>
+    <p class="mb-4"><a href="terms.html" class="text-xs text-gray-500 hover:text-gold-500 transition-colors uppercase tracking-widest">Terms of Service</a></p>
     <p class="text-xs text-gray-600">&copy; 2026 ZK Detailers. All rights reserved. Big Island, Hawaiʻi</p>
   </div>
 </footer>
